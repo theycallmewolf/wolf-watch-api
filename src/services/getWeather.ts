@@ -1,11 +1,11 @@
-import axios from 'axios';
+import api from './api';
 
-interface WeatherParams {
+interface IWeatherParams {
   woeid?: string;
   date: Date;
 }
 
-const getWeather = async ({ woeid, date }: WeatherParams) => {
+const getWeather = async ({ woeid, date }: IWeatherParams) => {
   const year = date.getFullYear();
   const month = date.getMonth() +1;
   const day = date.getDate();
@@ -13,10 +13,6 @@ const getWeather = async ({ woeid, date }: WeatherParams) => {
   console.log({year, month, day})
 
   try {
-    const api = axios.create({
-      baseURL: 'https://www.metaweather.com/api',
-    });
-    
     const response = await api.get(
       `/location/${woeid}/${year}/${month}/${day}/`
     );
