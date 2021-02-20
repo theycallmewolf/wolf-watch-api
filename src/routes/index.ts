@@ -1,8 +1,8 @@
 import { Router } from "express";
-import generalRouter from './general.routes'
+import weatherRouter from './weather.routes'
 
 const routes = Router();
 
-routes.use("/", generalRouter);
+routes.use("/", weatherRouter);
 
 export default routes;

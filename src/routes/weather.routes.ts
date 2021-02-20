@@ -2,9 +2,9 @@ import { Router } from 'express';
 import getWeather from '../services/getWeather';
 import getLocation from '../services/getLocation';
 
-const generalRouter = Router();
+const weatherRouter = Router();
 
-generalRouter.get('/weather/:woeid', async (request, response) => {
+weatherRouter.get('/weather/:woeid', async (request, response) => {
   const { woeid } = request.params;
   
   const weatherForecast = await getWeather({
@@ -22,7 +22,7 @@ generalRouter.get('/weather/:woeid', async (request, response) => {
   return response.status(200).json(weatherForecast.data[0]);
 });
 
-generalRouter.get('/location/:city', async (request, response) => {
+weatherRouter.get('/location/:city', async (request, response) => {
   const { city } = request.params;
   
   const location = await getLocation({city});
@@ -31,4 +31,4 @@ generalRouter.get('/location/:city', async (request, response) => {
 });
 
 
-export default generalRouter;
+export default weatherRouter;
