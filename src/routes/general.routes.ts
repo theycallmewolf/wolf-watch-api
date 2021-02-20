@@ -4,15 +4,18 @@ import getWeather from '../services/getWeather';
 const generalRouter = Router();
 
 generalRouter.get("/weather/:woeid", async (request, response) => {
-  let { woeid } = request.params;
-
+  const { woeid } = request.params;
+  
   const weatherForecast = await getWeather({
     woeid,
     date: new Date(),
   });
 
-  if(!weatherForecast) {
-    return null;
+  if(!weatherForecast) { 
+    response.status(404).json({
+      type: 'error',
+      message : 'not found',
+    })
   }
 
   return response.status(200).json(weatherForecast.data[0]);
