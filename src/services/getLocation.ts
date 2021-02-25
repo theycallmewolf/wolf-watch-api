@@ -1,4 +1,4 @@
-import api from './api';
+import { weatherApi } from './api';
 
 interface ILocationParams {
   city: string;
@@ -7,7 +7,7 @@ interface ILocationParams {
 const getWoeid = async ({ city }: ILocationParams ) => {
   
   try {
-    const response = await api.get(
+    const response = await weatherApi.get(
       `/location/search/?query=${city}`
     );
 

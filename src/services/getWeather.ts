@@ -1,4 +1,4 @@
-import api from './api';
+import { weatherApi } from './api';
 
 interface IWeatherParams {
   woeid?: string;
@@ -13,7 +13,7 @@ const getWeather = async ({ woeid, date }: IWeatherParams) => {
   console.log({year, month, day})
 
   try {
-    const response = await api.get(
+    const response = await weatherApi.get(
       `/location/${woeid}/${year}/${month}/${day}/`
     );
     

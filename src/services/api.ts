@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const api = axios.create({
+export const weatherApi = axios.create({
   baseURL: 'https://www.metaweather.com/api',
 });
-
-export default api;
