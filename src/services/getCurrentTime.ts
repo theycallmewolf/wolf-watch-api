@@ -7,8 +7,9 @@ interface GetTimeParams {
 
 const getCurrentTime = async ({latitude, longitude}: GetTimeParams) => {
  try {
-  const response = await timeApi.get(`/timezoneJSON?formatted=true&lat=${latitude}&lng=${longitude}&username=theycallmewolf&style=full`);
-  
+  const response = await timeApi.get(
+    `/timezoneJSON?formatted=true&lat=${latitude}&lng=${longitude}&username=${process.env.API_USER}&style=full`
+    );
   return response.data;
  } catch(error) {
    throw new Error(error);

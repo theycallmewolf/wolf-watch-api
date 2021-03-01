@@ -1,4 +1,8 @@
 node_modules
 *.pem
+<<<<<<< HEAD
 dist/
 package-lock.json
+=======
+.env
+>>>>>>> 8dfd044433f9aeadd618b345b737c8baf5b0f79a
