@@ -1,4 +1,5 @@
 import { Request, Response} from 'express';
+import { AppError } from '../errors/AppError'
 import getCurrentTime from "../services/getCurrentTime";
 import getLocation from "../services/getLocation";
 import getWeather from "../services/getWeather";
@@ -10,12 +11,7 @@ class CityController {
     
     const location = await getLocation({city});
 
-    if(location.length === 0) { 
-      return response.status(400).json({
-        type: 'error',
-        message : 'location not found',
-      })
-    }
+    if(location.length === 0) { throw new AppError('location not found') };
     
     const coordinates = location[0].latt_long.split(',');
     const latitude = coordinates[0];
@@ -27,12 +23,7 @@ class CityController {
       date: new Date(),
     });
   
-    if(!weatherForecast) { 
-      return response.status(400).json({
-        type: 'error',
-        message : 'forecast not found',
-      })
-    }
+    if(!weatherForecast) { throw new AppError('forecast not found') }
   
     return response.status(200).json({
       location: location[0],
